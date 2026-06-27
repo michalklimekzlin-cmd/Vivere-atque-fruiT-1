@@ -301,3 +301,185 @@ function drawOrb(){
 }
 
 drawOrb();
+
+/* =======================================
+   Golden Particles
+======================================= */
+
+const particles=[];
+
+for(let i=0;i<60;i++){
+
+particles.push({
+
+x:Math.random()*window.innerWidth,
+
+y:Math.random()*window.innerHeight,
+
+r:Math.random()*2+1,
+
+v:Math.random()*0.4+0.15
+
+});
+
+}
+
+const bg=document.getElementById("particles");
+
+const bgCanvas=document.createElement("canvas");
+
+bg.appendChild(bgCanvas);
+
+const bctx=bgCanvas.getContext("2d");
+
+function resize(){
+
+bgCanvas.width=window.innerWidth;
+
+bgCanvas.height=window.innerHeight;
+
+}
+
+resize();
+
+window.addEventListener("resize",resize);
+
+function drawParticles(){
+
+bctx.clearRect(0,0,bgCanvas.width,bgCanvas.height);
+
+particles.forEach(p=>{
+
+p.y-=p.v;
+
+if(p.y<0){
+
+p.y=bgCanvas.height;
+
+p.x=Math.random()*bgCanvas.width;
+
+}
+
+bctx.beginPath();
+
+bctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+
+bctx.fillStyle="rgba(255,215,90,.65)";
+
+bctx.fill();
+
+});
+
+requestAnimationFrame(drawParticles);
+
+}
+
+drawParticles();
+
+/* =======================================
+   Greeting
+======================================= */
+
+const greetings=[
+
+"Jsem připravená.",
+
+"Co dnes společně vytvoříme?",
+
+"Ráda ti pomohu.",
+
+"Vše je připravené.",
+
+"Vítej zpátky."
+
+];
+
+let greet=0;
+
+setInterval(()=>{
+
+document.querySelector(".hero h2").innerHTML=
+
+greetings[greet];
+
+greet++;
+
+if(greet>=greetings.length){
+
+greet=0;
+
+}
+
+},6000);
+
+/* =======================================
+   Logo Glow
+======================================= */
+
+setInterval(()=>{
+
+document.querySelector(".logo").animate([
+
+{
+
+transform:"scale(1)"
+
+},
+
+{
+
+transform:"scale(1.05)"
+
+},
+
+{
+
+transform:"scale(1)"
+
+}
+
+],{
+
+duration:1400
+
+});
+
+},5000);
+
+/* =======================================
+   Footer Clock
+======================================= */
+
+const footer=document.querySelector("footer p");
+
+setInterval(()=>{
+
+const d=new Date();
+
+footer.innerHTML=
+
+"VaFT AI • "+
+
+d.toLocaleTimeString("cs-CZ");
+
+},1000);
+
+/* =======================================
+   Console
+======================================= */
+
+console.log(
+
+"%cVaFT AI",
+
+"color:#ffd86d;font-size:28px;font-weight:bold;"
+
+);
+
+console.log(
+
+"%cJsem připravená.",
+
+"color:white;font-size:16px;"
+
+);
