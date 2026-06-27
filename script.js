@@ -211,3 +211,93 @@ console.log(
 "VaFT AI inicializována."
 
 );
+
+/* =======================================
+   Canvas AI Orb
+======================================= */
+
+const canvas = document.getElementById("orbCanvas");
+const ctx = canvas.getContext("2d");
+
+canvas.width = 240;
+canvas.height = 240;
+
+const nodes = [];
+
+for(let i=0;i<45;i++){
+
+    nodes.push({
+
+        x:Math.random()*240,
+
+        y:Math.random()*240,
+
+        vx:(Math.random()-.5)*0.5,
+
+        vy:(Math.random()-.5)*0.5
+
+    });
+
+}
+
+function drawOrb(){
+
+    ctx.clearRect(0,0,240,240);
+
+    for(let i=0;i<nodes.length;i++){
+
+        let a=nodes[i];
+
+        a.x+=a.vx;
+        a.y+=a.vy;
+
+        if(a.x<0||a.x>240)a.vx*=-1;
+        if(a.y<0||a.y>240)a.vy*=-1;
+
+        ctx.beginPath();
+
+        ctx.arc(a.x,a.y,2,0,Math.PI*2);
+
+        ctx.fillStyle="#ffd86d";
+
+        ctx.fill();
+
+        for(let j=i+1;j<nodes.length;j++){
+
+            let b=nodes[j];
+
+            let dx=a.x-b.x;
+
+            let dy=a.y-b.y;
+
+            let dist=Math.sqrt(dx*dx+dy*dy);
+
+            if(dist<45){
+
+                ctx.beginPath();
+
+                ctx.moveTo(a.x,a.y);
+
+                ctx.lineTo(b.x,b.y);
+
+                ctx.strokeStyle=
+
+                "rgba(255,215,90,"+
+
+                (1-dist/45)*0.45+
+
+                ")";
+
+                ctx.stroke();
+
+            }
+
+        }
+
+    }
+
+    requestAnimationFrame(drawOrb);
+
+}
+
+drawOrb();
