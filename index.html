@@ -1,25 +1,77 @@
 <!DOCTYPE html>
 <html lang="cs">
+
 <head>
 
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>VaFT AI</title>
+
+<meta name="theme-color" content="#111111">
+
 <meta name="apple-mobile-web-app-capable" content="yes">
-
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-
 <meta name="apple-mobile-web-app-title" content="VaFT AI">
 
+<link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icon-192.png">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VaFT AI</title>
 
-    <link rel="manifest" href="manifest.json">
-    <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css">
 
-    <meta name="theme-color" content="#111111">
 </head>
 
 <body>
+
+<div id="floatingDock">
+
+<button class="dockItem">🏠</button>
+
+<button class="dockItem">🧠</button>
+
+<button class="dockItem">📁</button>
+
+<button class="dockItem">📝</button>
+
+<button class="dockItem">📨</button>
+
+<button class="dockItem">⚙️</button>
+
+</head>
+
+<body>
+    
+<div id="notifications">
+
+<div class="notify">
+🟢 Signal Core připraven.
+</div>
+
+<div class="notify">
+☕ Espresso Mode aktivní.
+</div>
+
+</div>
+
+<div id="aiStatus">
+
+<div class="pulse"></div>
+
+<span>
+VaFT AI Online
+</span>
+
+</div>
+
+<div id="particles"></div>
+
+<div id="ambientGlow"></div>
+
+<div id="mouseGlow"></div>
+
+<div id="noise"></div>
+
+<div id="gridOverlay"></div>
 
 <div id="loading">
 
@@ -29,7 +81,7 @@
 
 <p id="loadingText">
 
-Inicializuji své systémy...
+Inicializuji Signal Core...
 
 </p>
 
@@ -41,51 +93,198 @@ Inicializuji své systémy...
 
 </div>
 
-<div id="particles"></div>
-
 <header>
 
 <div class="logo">
-    <span class="gold">VaFT</span>
+
+<span class="gold">VaFT</span>
+
+<small>
+
+Vivere atque FruiT
+
+</small>
+
 </div>
 
 <nav>
 
-<nav>
-
 <a href="#">Domů</a>
-<a href="#">Projekty</a>
-<a href="#">Nástroje</a>
-<a href="#">AI</a>
+
+<a href="#">Nástroje ▾</a>
+
+<a href="#">Projekty ▾</a>
+
+<a href="#">AI ▾</a>
+
 <a href="#">Nastavení</a>
 
 </nav>
-</nav>
+
+<div class="network">
+
+🟢 VaFT-Network
+
+</div>
 
 </header>
 
 <section class="hero">
 
-<div class="orb" id="orb">
-    <canvas id="orbCanvas"></canvas>
-</div>
+<div class="heroLeft">
 
-<h1>Ahoj, jsem VaFT.</h1>
+<h1>
 
-<h2>Jsem připravená.</h2>
+Automatizuj rutinu.
+
+<br>
+
+<span class="goldText">
+
+Žij život.
+
+</span>
+
+</h1>
 
 <p>
-Pomohu ti s projekty,
-automatizací,
-poznámkami
-i novými nápady.
+
+Tvůj AI mozek,
+který pomáhá zpracovat úkoly,
+automatizovat práci
+a vytvářet nové nápady.
+
 </p>
 
-<div class="inputBox">
+<button class="startButton">
+
+✨ Spustit AI
+
+</button>
+
+</div>
+
+<div class="heroCenter">
+
+<div class="orb">
+
+<canvas id="signal-canvas"></canvas>
+
+<canvas id="particlesCanvas"></canvas>
+
+<canvas id="connectionsCanvas"></canvas>
+
+<div class="orbGlow"></div>
+
+<div id="leftSidebar"></div>
+
+<div id="rightSidebar"></div>
+
+<div id="commandPalette"></div>
+    
+</div>
+
+<div id="mode-label">
+
+Signal Core
+
+</div>
+
+</div>
+
+</div>
+
+<div class="heroRight">
+
+<div class="infoCard">
+
+📨
+
+<h3>AI porozumí</h3>
+
+<p>
+
+Tvým e-mailům,
+poznámkám
+a myšlenkám.
+
+</p>
+
+</div>
+
+<div class="infoCard">
+
+✅
+
+<h3>Zpracuje za tebe</h3>
+
+<p>
+
+Úkoly,
+projekty,
+soubory
+i automatizace.
+
+</p>
+
+</div>
+
+<div class="infoCard">
+
+⚡
+
+<h3>Přinese výsledky</h3>
+
+<p>
+
+Rychle,
+chytře
+a přesně.
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+<section class="assistant">
+
+<div class="assistantBox">
+
+<div class="assistantHeader">
+
+<div class="assistantAvatar">
+
+🧠
+
+</div>
+
+<div>
+
+<h2>
+
+Ahoj,
+jsem VaFT.
+
+</h2>
+
+<p>
+
+Jsem připravená.
+Na čem budeme dnes společně pracovat?
+
+</p>
+
+</div>
+
+</div>
+
+<div class="assistantInput">
 
 <input
 type="text"
-placeholder="Na co se dnes společně zaměříme?"
+placeholder="Napiš svůj úkol, otázku nebo nápad..."
 >
 
 <button id="mic">
@@ -94,117 +293,537 @@ placeholder="Na co se dnes společně zaměříme?"
 
 </button>
 
+<button class="sendButton">
+
+➜
+
+</button>
+
+</div>
+
+<div class="quickActions">
+
+<button>
+
+📄 Shrnout dokument
+
+</button>
+
+<button>
+
+✉️ Odpovědět na e-mail
+
+</button>
+
+<button>
+
+📁 Nový projekt
+
+</button>
+
+<button>
+
+🧠 Brainstorming
+
+</button>
+
+<button>
+
+⚙️ Automatizace
+
+</button>
+
+<button>
+
+💬 Chat
+
+</button>
+
+</div>
+
 </div>
 
 </section>
 
-<section class="cards">
+<section class="dashboard">
 
-<div class="card">
+<div class="dashboardTitle">
 
-<h3>🧠 AI</h3>
+<h2>
+
+Přehled
+
+</h2>
 
 <p>
-Přemýšlím,
-analyzuji
-a navrhuji řešení.
+
+VaFT Dashboard
+
 </p>
 
 </div>
 
-<div class="card">
+<div class="dashboardGrid">
 
-<h3>📁 Projekty</h3>
+<div class="dashboardCard">
+
+<div class="dashboardIcon">
+
+📁
+
+</div>
+
+<h3>
+
+Projekty
+
+</h3>
 
 <p>
 
-Měj vše
+Spravuj své projekty
 na jednom místě.
 
 </p>
 
 </div>
 
-<div class="card">
+<div class="dashboardCard">
 
-<h3>⚡ Automatizace</h3>
+<div class="dashboardIcon">
+
+🧠
+
+</div>
+
+<h3>
+
+AI
+
+</h3>
 
 <p>
 
-Ušetři čas.
+Analyzuji,
+přemýšlím
+a navrhuji řešení.
 
 </p>
 
 </div>
 
-<div class="card">
+<div class="dashboardCard">
 
-<h3>🔒 Offline</h3>
+<div class="dashboardIcon">
+
+⚡
+
+</div>
+
+<h3>
+
+Automatizace
+
+</h3>
 
 <p>
 
-Připravená i bez internetu.
+Ušetři čas
+opakovanými úlohami.
 
 </p>
 
 </div>
 
-</section>
+<div class="dashboardCard">
 
-<section class="actions">
+<div class="dashboardIcon">
 
-<button>Nový projekt</button>
+🔒
 
-<button>Poznámky</button>
+</div>
 
-<button>Automatizace</button>
+<h3>
 
-<button>Nastavení</button>
+Offline
 
-</section>
-
-<section class="status">
-
-<h2>Status</h2>
+</h3>
 
 <p>
 
-🟢 Připravená
+VaFT funguje
+i bez internetu.
 
 </p>
 
-<p>
+</div>
 
-☕ Dáme pivo na MRCDS Gangu?
-
-</p>
-
-<p>
-
-🤔
-
-</p>
-
-<p>
-
-Vlastně ne...
-
-</p>
-
-<p>
-
-Dáme si jen espresso.
-
-☕
-
-</p>
+</div>
 
 </section>
+<section class="workspace">
 
-</footer>
+<div class="workspaceLeft">
+
+<div class="panel">
+
+<h2>📊 Aktivita systému</h2>
+
+<ul>
+
+<li>🟢 Signal Core aktivní</li>
+
+<li>🟢 AI připravena</li>
+
+<li>🟢 Offline režim připraven</li>
+
+<li>🟢 Synchronizace dokončena</li>
+
+</ul>
+
+</div>
+
+<div class="panel">
+
+<h2>📈 Statistiky</h2>
+
+<div class="stats">
+
+<div>
+
+<h1>128</h1>
+
+<span>Projektů</span>
+
+</div>
+
+<div>
+
+<h1>452</h1>
+
+<span>Poznámek</span>
+
+</div>
+
+<div>
+
+<h1>99%</h1>
+
+<span>Stabilita</span>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="workspaceCenter">
+
+<div class="terminal">
+
+<div class="terminalHeader">
+
+● ● ●
+
+<span>
+
+VaFT Console
+
+</span>
+
+</div>
+
+<div class="terminalBody">
+
+<p>> Inicializuji Signal Core...</p>
+
+<p>> AI připravena.</p>
+
+<p>> Kontroluji neuronovou síť...</p>
+
+<p>> Synchronizuji moduly...</p>
+
+<p>> Čekám na příkaz...</p>
+
+<p class="secret">
+
+> ☕ Dáme pivo na MRCDS Gangu?
+
+</p>
+
+<p class="secret">
+
+> Zamítám...
+
+</p>
+
+<p class="secret">
+
+> Espresso bude lepší.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="workspaceRight">
+
+<div class="miniCard">
+
+🧠
+
+<h3>
+
+Neuronová síť
+
+</h3>
 
 <p>
+
+Signal Core běží.
+
+</p>
+
+</div>
+
+<div class="miniCard">
+
+⚡
+
+<h3>
+
+Výkon
+
+</h3>
+
+<p>
+
+Optimalizováno.
+
+</p>
+
+</div>
+
+<div class="miniCard">
+
+📁
+
+<h3>
+
+Úložiště
+
+</h3>
+
+<p>
+
+Připraveno.
+
+</p>
+
+</div>
+
+<div class="miniCard">
+
+🌐
+
+<h3>
+
+VaFT Network
+
+</h3>
+
+<p>
+
+Online
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="timeline">
+
+<h2>
+
+Poslední aktivita
+
+</h2>
+
+<div class="timelineGrid">
+
+<div>
+
+09:13
+
+<br>
+
+🧠 AI analyzovala projekt
+
+</div>
+
+<div>
+
+09:15
+
+<br>
+
+📄 Dokument zpracován
+
+</div>
+
+<div>
+
+09:20
+
+<br>
+
+⚙️ Automatizace spuštěna
+
+</div>
+
+<div>
+
+09:25
+
+<br>
+
+☕ Espresso připraveno 😄
+
+</div>
+
+</div>
+
+</section>
+<section class="apps">
+
+<div class="appsHeader">
+
+<h2>
+
+Rychlé aplikace
+
+</h2>
+
+<p>
+
+Jedním kliknutím.
+
+</p>
+
+</div>
+
+<div class="appsGrid">
+
+<div class="app">
+
+<div class="appIcon">🧠</div>
+
+<span>AI</span>
+
+</div>
+
+<div class="app">
+
+<div class="appIcon">📁</div>
+
+<span>Projekty</span>
+
+</div>
+
+<div class="app">
+
+<div class="appIcon">📝</div>
+
+<span>Poznámky</span>
+
+</div>
+
+<div class="app">
+
+<div class="appIcon">⚙️</div>
+
+<span>Nastavení</span>
+
+</div>
+
+<div class="app">
+
+<div class="appIcon">📊</div>
+
+<span>Statistiky</span>
+
+</div>
+
+<div class="app">
+
+<div class="appIcon">📨</div>
+
+<span>E-mail</span>
+
+</div>
+
+<div class="app">
+
+<div class="appIcon">☁️</div>
+
+<span>Cloud</span>
+
+</div>
+
+<div class="app">
+
+<div class="appIcon">🔒</div>
+
+<span>Zabezpečení</span>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="bottomBar">
+
+<div>
+
+🟢 Signal Core Online
+
+</div>
+
+<div>
+
+⚡ AI připravena
+
+</div>
+
+<div>
+
+📡 VaFT Network
+
+</div>
+
+<div>
+
+☕ Espresso Mode
+
+</div>
+
+</section>
+
+<footer>
+
+<p>
+
 VaFT AI • Vivere atque FruiT
+
 </p>
 
 </footer>
@@ -212,13 +831,9 @@ VaFT AI • Vivere atque FruiT
 <script src="script.js"></script>
 
 <script>
-
-if("serviceWorker" in navigator){
-
-navigator.serviceWorker.register("sw.js");
-
+if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("sw.js");
 }
-
 </script>
 
 </body>
